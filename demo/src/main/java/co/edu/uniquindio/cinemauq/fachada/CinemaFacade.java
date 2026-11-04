@@ -19,7 +19,6 @@ import co.edu.uniquindio.cinemauq.servicio.IServicioPagos;
 import co.edu.uniquindio.cinemauq.servicio.IServicioPuntos;
 import co.edu.uniquindio.cinemauq.servicio.IServicioRecargas;
 import co.edu.uniquindio.cinemauq.servicio.IServicioReportes;
-import co.edu.uniquindio.cinemauq.servicio.dto.PedidoCompra;
 import co.edu.uniquindio.cinemauq.servicio.estrategias.PuntosPorValorPagado;
 import co.edu.uniquindio.cinemauq.servicio.eventos.GestorEventos;
 import co.edu.uniquindio.cinemauq.servicio.eventos.NotificadorAdministradores;
@@ -138,13 +137,13 @@ public class CinemaFacade {
 
     public Compra cotizar(Funcion funcion, List<String> asientos, Map<String, Integer> productos,
                           Set<String> asientosConPuntos, Set<String> productosConPuntos) {
-        return compras.cotizar(new PedidoCompra(getClienteActual(), funcion, asientos, productos,
+        return compras.cotizar(new ComandoCambiarCartelera(getClienteActual(), funcion, asientos, productos,
                 asientosConPuntos, productosConPuntos));
     }
 
     public Compra comprar(Funcion funcion, List<String> asientos, Map<String, Integer> productos,
                           Set<String> asientosConPuntos, Set<String> productosConPuntos) {
-        return compras.comprar(new PedidoCompra(getClienteActual(), funcion, asientos, productos,
+        return compras.comprar(new ComandoCambiarCartelera(getClienteActual(), funcion, asientos, productos,
                 asientosConPuntos, productosConPuntos));
     }
 
