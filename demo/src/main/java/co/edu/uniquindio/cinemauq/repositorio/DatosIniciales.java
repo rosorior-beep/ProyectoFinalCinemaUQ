@@ -21,7 +21,6 @@ import co.edu.uniquindio.cinemauq.servicio.IServicioAdministracion;
 import co.edu.uniquindio.cinemauq.servicio.IServicioPagos;
 import co.edu.uniquindio.cinemauq.servicio.IServicioPuntos;
 import co.edu.uniquindio.cinemauq.servicio.IServicioRecargas;
-import co.edu.uniquindio.cinemauq.servicio.dto.PedidoCompra;
 import co.edu.uniquindio.cinemauq.servicio.estrategias.PuntosPorValorPagadoStrategy;
 import co.edu.uniquindio.cinemauq.servicio.eventos.GestorEventos;
 import co.edu.uniquindio.cinemauq.servicio.impl.ServicioAdministracion;
@@ -205,7 +204,7 @@ public final class DatosIniciales {
         recargas.recargarDirectamente(sofia.getId(), 200_000);
         Map<String, Integer> productos = new HashMap<>();
         productos.put(buscarProducto("Combo Familiar"), 2);
-        compras.comprar(new PedidoCompra(sofia, f, asientos, productos, Set.of(), Set.of()));
+        compras.comprar(new ComandoCambiarCartelera(sofia, f, asientos, productos, Set.of(), Set.of()));
     }
 
 
@@ -275,7 +274,7 @@ public final class DatosIniciales {
             conPuntos.add(asientos.get(0));
         }
         asegurarSaldo(cliente, momento);
-        Compra compra = compras.comprar(new PedidoCompra(cliente, f, asientos, productos, conPuntos, Set.of()));
+        Compra compra = compras.comprar(new ComandoCambiarCartelera(cliente, f, asientos, productos, conPuntos, Set.of()));
         if (azar.nextDouble() < 0.07) {
             LocalDateTime funcion = f.getFechaHora();
             LocalDateTime cancelacion = azar.nextBoolean() ? funcion.minusHours(30) : funcion.minusHours(5);
@@ -312,9 +311,9 @@ public final class DatosIniciales {
                 .orElse(futuras.get(0));
         reloj.establecer(ahora.minusHours(2));
         asegurarSaldo(sofia, ahora.minusHours(2));
-        compras.comprar(new PedidoCompra(sofia, lejana, asientosLibres(lejana, 2),
+        compras.comprar(new ComandoCambiarCartelera(sofia, lejana, asientosLibres(lejana, 2),
                 Map.of(buscarProducto("Combo Pareja"), 1), Set.of(), Set.of()));
-        compras.comprar(new PedidoCompra(sofia, cercana, asientosLibres(cercana, 2), Map.of(), Set.of(), Set.of()));
+        compras.comprar(new ComandoCambiarCartelera(sofia, cercana, asientosLibres(cercana, 2), Map.of(), Set.of(), Set.of()));
 
 
         Funcion aCancelar = futuras.get(futuras.size() / 2);
@@ -324,7 +323,7 @@ public final class DatosIniciales {
             asegurarSaldo(c, ahora.minusHours(3));
             List<String> asientos = asientosLibres(aCancelar, 2);
             if (!asientos.isEmpty()) {
-                compras.comprar(new PedidoCompra(c, aCancelar, asientos, Map.of(), Set.of(), Set.of()));
+                compras.comprar(new ComandoCambiarCartelera(c, aCancelar, asientos, Map.of(), Set.of(), Set.of()));
             }
         }
         reloj.establecer(ahora.minusHours(1));
