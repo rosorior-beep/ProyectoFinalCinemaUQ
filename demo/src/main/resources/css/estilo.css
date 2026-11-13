@@ -1,0 +1,246 @@
+
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-base: #241d3d;
+    -fx-background: #120e22;
+    -fx-control-inner-background: #1b1630;
+    -fx-control-inner-background-alt: #201a38;
+    -fx-accent: #7c3aed;
+    -fx-focus-color: #a78bfa;
+    -fx-faint-focus-color: #a78bfa22;
+    -fx-text-base-color: #ece9f7;
+    -fx-text-background-color: #ece9f7;
+    -fx-selection-bar: #5b21b6;
+    -fx-selection-bar-non-focused: #3b2a6b;
+    -color-dorado: #f5b301;
+    -color-morado: #7c3aed;
+    -color-texto-suave: #a59fc0;
+}
+
+.fondo-app, .seccion, .contenido-scroll, .contenido-scroll > .viewport {
+    -fx-background-color: #120e22;
+}
+
+.label { -fx-text-fill: #ece9f7; }
+
+
+.titulo { -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white; }
+.subtitulo { -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #d8cffc; }
+.descripcion { -fx-text-fill: -color-texto-suave; }
+.descripcion-clara { -fx-text-fill: #d9d3f0; -fx-font-size: 14px; }
+.texto-error { -fx-text-fill: #ff8a8a; -fx-font-weight: bold; }
+.texto-aviso { -fx-text-fill: -color-dorado; }
+.etiqueta-form { -fx-text-fill: -color-texto-suave; }
+
+
+.fondo-login {
+    -fx-background-color: linear-gradient(to bottom right, #0f0a1f 0%, #261450 55%, #3a1d6e 100%);
+}
+.panel-marca { -fx-background-color: transparent; }
+.logo-grande { -fx-font-size: 54px; -fx-font-weight: bold; -fx-text-fill: -color-dorado; }
+.lema { -fx-font-size: 20px; -fx-text-fill: white; }
+.tarjeta-login {
+    -fx-background-color: #17122bEE;
+    -fx-background-radius: 16;
+    -fx-border-color: #3b2d63;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, #00000099, 30, 0.2, 0, 8);
+}
+.demo {
+    -fx-background-color: #241b44;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-text-fill: #cfc6ef;
+    -fx-font-size: 12px;
+}
+
+
+.sidebar { -fx-background-color: #0d0a19; -fx-border-color: transparent #2a2245 transparent transparent; }
+.logo { -fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: -color-dorado; }
+.rol { -fx-text-fill: -color-texto-suave; -fx-font-size: 12px; }
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cbc4e6;
+    -fx-font-size: 13.5px;
+    -fx-padding: 9 12 9 12;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.nav-btn:hover { -fx-background-color: #1f1838; -fx-text-fill: white; }
+.nav-activo { -fx-background-color: #2e2156; -fx-text-fill: white; -fx-font-weight: bold; }
+.nav-salir { -fx-text-fill: #a59fc0; }
+
+.encabezado { -fx-background-color: #151028; -fx-border-color: transparent transparent #2a2245 transparent; }
+.saludo { -fx-font-size: 16px; -fx-font-weight: bold; }
+.chip {
+    -fx-background-color: #251d42;
+    -fx-background-radius: 20;
+    -fx-padding: 6 14 6 14;
+    -fx-text-fill: #e6e0ff;
+}
+.chip-dorado { -fx-background-color: #3a2c05; -fx-text-fill: -color-dorado; -fx-font-weight: bold; }
+
+
+.tarjeta {
+    -fx-background-color: #1a1530;
+    -fx-background-radius: 12;
+    -fx-border-color: #2b2349;
+    -fx-border-radius: 12;
+    -fx-padding: 16;
+}
+.kpi { -fx-padding: 14 16 14 16; }
+.kpi-titulo { -fx-text-fill: -color-texto-suave; -fx-font-size: 12px; }
+.kpi-valor { -fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold; }
+
+
+.btn-primario {
+    -fx-background-color: -color-dorado;
+    -fx-text-fill: #1a1300;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+.btn-primario:hover { -fx-background-color: #ffc933; }
+.btn-secundario {
+    -fx-background-color: #2a2147;
+    -fx-text-fill: #e6e0ff;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+.btn-secundario:hover { -fx-background-color: #382c60; }
+.btn-peligro {
+    -fx-background-color: #7f1d1d;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14 8 14;
+    -fx-cursor: hand;
+}
+.btn-peligro:hover { -fx-background-color: #991b1b; }
+
+
+.tarjeta-pelicula { -fx-cursor: hand; }
+.tarjeta-pelicula:hover .poster { -fx-effect: dropshadow(gaussian, #f5b30188, 18, 0.3, 0, 0); }
+.poster { -fx-background-radius: 12; }
+.poster-1 { -fx-background-color: linear-gradient(to bottom, #1e3a8a, #0b1026); }
+.poster-2 { -fx-background-color: linear-gradient(to bottom, #7f1d1d, #120808); }
+.poster-3 { -fx-background-color: linear-gradient(to bottom, #047857, #04140f); }
+.poster-4 { -fx-background-color: linear-gradient(to bottom, #9d174d, #1a0611); }
+.poster-5 { -fx-background-color: linear-gradient(to bottom, #b45309, #1a0e02); }
+.poster-6 { -fx-background-color: linear-gradient(to bottom, #6d28d9, #120a26); }
+.poster-inicial { -fx-font-size: 46px; -fx-font-weight: bold; -fx-text-fill: #ffffff55; }
+.poster-titulo { -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white; }
+.dato-pelicula { -fx-text-fill: -color-texto-suave; -fx-font-size: 12px; }
+.etiqueta-dia { -fx-font-weight: bold; -fx-text-fill: -color-dorado; }
+.btn-horario {
+    -fx-background-color: #251d42;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #3b2d63;
+    -fx-border-radius: 8;
+    -fx-padding: 6 12 6 12;
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand;
+}
+.btn-horario:hover { -fx-border-color: -color-dorado; }
+.info-funcion { -fx-font-size: 14px; -fx-text-fill: #e6e0ff; -fx-font-weight: bold; }
+
+
+.pantalla {
+    -fx-background-color: linear-gradient(to bottom, #f5b30166, transparent);
+    -fx-text-fill: #f5d77a;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 0 14 0;
+    -fx-background-radius: 50 50 0 0;
+}
+.asiento {
+    -fx-background-radius: 6 6 3 3;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+.asiento-general { -fx-background-color: #4c3a8c; }
+.asiento-general:hover { -fx-background-color: #6a52c4; }
+.asiento-preferencial { -fx-background-color: #9d4edd; }
+.asiento-preferencial:hover { -fx-background-color: #b675ee; }
+.asiento-accesible { -fx-background-color: #0e7490; }
+.asiento-accesible:hover { -fx-background-color: #1592b3; }
+.asiento-seleccionado { -fx-background-color: -color-dorado; -fx-text-fill: #1a1300; -fx-font-weight: bold; }
+.asiento-ocupado { -fx-background-color: #3a3546; -fx-text-fill: #77708c; }
+.asiento-deshabilitado { -fx-background-color: #1b1726; -fx-border-color: #3a3546; -fx-border-style: dashed; -fx-text-fill: #4a445c; }
+.asiento:disabled { -fx-opacity: 1; }
+.muestra-leyenda { -fx-cursor: default; }
+.texto-leyenda, .numero-columna, .letra-fila { -fx-text-fill: -color-texto-suave; -fx-font-size: 11px; }
+.letra-fila { -fx-font-weight: bold; -fx-padding: 0 6 0 0; }
+
+
+.nombre-producto { -fx-font-weight: bold; }
+.detalle-producto { -fx-text-fill: -color-texto-suave; -fx-font-size: 11px; }
+.precio { -fx-text-fill: -color-dorado; }
+.item-resumen { -fx-text-fill: #e6e0ff; }
+.check-puntos { -fx-text-fill: -color-dorado; -fx-font-size: 12px; }
+.total-destacado { -fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-dorado; }
+
+
+.tarjeta-virtual {
+    -fx-background-color: linear-gradient(to bottom right, #5b21b6, #1e1b4b 70%, #0f0a1f);
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, #00000088, 20, 0.2, 0, 6);
+}
+.tarjeta-marca { -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: -color-dorado; }
+.tarjeta-saldo { -fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: white; }
+.tarjeta-numero { -fx-font-family: "Consolas", "Courier New", monospace; -fx-font-size: 17px; -fx-text-fill: #e6e0ff; }
+.tarjeta-titular { -fx-text-fill: #cfc6ef; -fx-font-size: 12px; }
+.estado-activo { -fx-background-color: #065f46; -fx-background-radius: 10; -fx-padding: 3 10 3 10; -fx-text-fill: #a7f3d0; -fx-font-size: 11px; }
+.estado-bloqueado { -fx-background-color: #7f1d1d; -fx-background-radius: 10; -fx-padding: 3 10 3 10; -fx-text-fill: #fecaca; -fx-font-size: 11px; }
+
+
+.table-view, .list-view {
+    -fx-background-color: #1a1530;
+    -fx-border-color: #2b2349;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+.table-view .column-header, .table-view .column-header-background, .table-view .filler {
+    -fx-background-color: #221b3d;
+}
+.table-view .column-header .label { -fx-text-fill: #cbc4e6; -fx-font-weight: bold; }
+.table-row-cell:odd { -fx-background-color: #1d1735; }
+.table-row-cell:even { -fx-background-color: #1a1530; }
+.table-row-cell:selected { -fx-background-color: #5b21b6; }
+.table-row-cell.fila-vencida, .table-row-cell.fila-vencida:odd { -fx-background-color: #3b1414; }
+.fila-vencida .table-cell { -fx-text-fill: #fca5a5; }
+.fila-por-vencer .table-cell { -fx-text-fill: -color-dorado; -fx-font-weight: bold; }
+.list-cell { -fx-padding: 10; -fx-background-color: #1a1530; -fx-border-color: transparent transparent #2b2349 transparent; }
+.list-cell:selected { -fx-background-color: #3b2a6b; }
+.no-leida { -fx-font-weight: bold; -fx-text-fill: -color-dorado; }
+
+
+.text-field, .password-field, .text-area, .combo-box, .date-picker, .spinner {
+    -fx-background-radius: 6;
+}
+.text-field, .password-field { -fx-padding: 7 9 7 9; }
+
+
+.chart { -fx-padding: 4; }
+.chart-plot-background { -fx-background-color: transparent; }
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines { -fx-stroke: #2b2349; }
+.axis { -fx-tick-label-fill: #a59fc0; }
+.axis-label { -fx-text-fill: #a59fc0; }
+.chart-pie-label { -fx-fill: #ece9f7; -fx-font-size: 11px; }
+.chart-pie-label-line { -fx-stroke: #a59fc0; }
+.default-color0.chart-bar { -fx-bar-fill: #f5b301; }
+.default-color0.chart-series-line { -fx-stroke: #f5b301; -fx-stroke-width: 2.5px; }
+.default-color0.chart-line-symbol { -fx-background-color: #f5b301, #120e22; }
+.default-color0.chart-pie { -fx-pie-color: #f5b301; }
+.default-color1.chart-pie { -fx-pie-color: #7c3aed; }
+.default-color2.chart-pie { -fx-pie-color: #0e7490; }
+.default-color3.chart-pie { -fx-pie-color: #db2777; }
+.default-color4.chart-pie { -fx-pie-color: #16a34a; }
+.default-color5.chart-pie { -fx-pie-color: #ea580c; }
+.default-color6.chart-pie { -fx-pie-color: #64748b; }

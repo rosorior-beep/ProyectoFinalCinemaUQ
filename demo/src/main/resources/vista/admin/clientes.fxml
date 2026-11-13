@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.admin.ClientesVistaControlador"
+      spacing="14" styleClass="seccion">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+    <Label text="Clientes y recargas" styleClass="titulo"/>
+    <Label text="Consulta clientes, recarga tarjetas y responde las solicitudes de recarga." styleClass="descripcion"/>
+    <TextField fx:id="txtFiltro" promptText="Buscar por nombre, documento o correo…"/>
+    <TableView fx:id="tablaClientes" prefHeight="300">
+        <placeholder><Label text="No hay clientes."/></placeholder>
+        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+        <columns>
+            <TableColumn fx:id="colId" text="Id" prefWidth="70"/>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+            <TableColumn fx:id="colDocumento" text="Documento" prefWidth="100"/>
+            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="180"/>
+            <TableColumn fx:id="colTarjeta" text="Tarjeta" prefWidth="140"/>
+            <TableColumn fx:id="colSaldo" text="Saldo" prefWidth="100"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="90"/>
+            <TableColumn fx:id="colPuntos" text="Puntos" prefWidth="70"/>
+        </columns>
+    </TableView>
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Cliente seleccionado:" styleClass="descripcion"/>
+        <TextField fx:id="txtMonto" promptText="Monto" prefWidth="120"/>
+        <Button text="Recargar tarjeta" styleClass="btn-primario" onAction="#recargar"/>
+        <Button text="Bloquear / activar tarjeta" styleClass="btn-secundario" onAction="#alternarTarjeta"/>
+    </HBox>
+    <Label text="Solicitudes de recarga" styleClass="subtitulo"/>
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <CheckBox fx:id="chkPendientes" text="Solo pendientes" selected="true" onAction="#cargarSolicitudes"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Aprobar" styleClass="btn-primario" onAction="#aprobar"/>
+        <Button text="Rechazar" styleClass="btn-peligro" onAction="#rechazar"/>
+    </HBox>
+    <TableView fx:id="tablaSolicitudes" prefHeight="200">
+        <placeholder><Label text="No hay solicitudes."/></placeholder>
+        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+        <columns>
+            <TableColumn fx:id="colSolId" text="Id" prefWidth="80"/>
+            <TableColumn fx:id="colSolFecha" text="Fecha" prefWidth="130"/>
+            <TableColumn fx:id="colSolCliente" text="Cliente" prefWidth="150"/>
+            <TableColumn fx:id="colSolMonto" text="Monto" prefWidth="100"/>
+            <TableColumn fx:id="colSolEstado" text="Estado" prefWidth="90"/>
+            <TableColumn fx:id="colSolRespuesta" text="Respuesta" prefWidth="160"/>
+        </columns>
+    </TableView>
+</VBox>

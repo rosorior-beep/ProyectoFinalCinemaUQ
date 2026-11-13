@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.cliente.MisComprasVistaControlador"
+      spacing="14" styleClass="seccion">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+    <Label text="Mis compras" styleClass="titulo"/>
+    <Label wrapText="true" styleClass="descripcion"
+           text="Puedes cancelar: más de 24 h antes de la función se devuelve el 100 %; entre 2 y 24 h, el 80 %; con menos de 2 h no se permite. El dinero vuelve a tu tarjeta virtual."/>
+    <TableView fx:id="tablaCompras" prefHeight="320" VBox.vgrow="ALWAYS">
+        <placeholder><Label text="Aún no tienes compras."/></placeholder>
+        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+        <columns>
+            <TableColumn fx:id="colId" text="Compra" prefWidth="80"/>
+            <TableColumn fx:id="colFecha" text="Fecha compra" prefWidth="130"/>
+            <TableColumn fx:id="colPelicula" text="Película" prefWidth="160"/>
+            <TableColumn fx:id="colFuncion" text="Función" prefWidth="130"/>
+            <TableColumn fx:id="colAsientos" text="Asientos" prefWidth="120"/>
+            <TableColumn fx:id="colTotal" text="Total" prefWidth="100"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="90"/>
+        </columns>
+    </TableView>
+    <VBox fx:id="panelDetalle" spacing="8" styleClass="tarjeta">
+        <Label text="Selecciona una compra para ver el detalle." styleClass="descripcion"/>
+    </VBox>
+</VBox>

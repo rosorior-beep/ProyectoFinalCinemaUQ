@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.NotificacionesVistaControlador"
+      spacing="14" styleClass="seccion">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+    <Label text="Notificaciones" styleClass="titulo"/>
+    <Label wrapText="true" styleClass="descripcion"
+           text="Avisos generados automáticamente (patrón Observer) cuando ocurre un evento: compras, cancelaciones, recargas."/>
+    <ListView fx:id="listaNotificaciones" VBox.vgrow="ALWAYS">
+        <placeholder><Label text="No tienes notificaciones."/></placeholder>
+    </ListView>
+</VBox>

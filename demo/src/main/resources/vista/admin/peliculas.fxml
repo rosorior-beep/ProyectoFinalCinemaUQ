@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.admin.PeliculasVistaControlador"
+      spacing="14" styleClass="seccion">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+    <Label text="Películas" styleClass="titulo"/>
+    <Label text="Registra y edita las películas. Solo las películas en cartelera pueden programarse." styleClass="descripcion"/>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tablaPeliculas" HBox.hgrow="ALWAYS">
+            <placeholder><Label text="No hay películas."/></placeholder>
+            <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="colId" text="Id" prefWidth="70"/>
+                <TableColumn fx:id="colTitulo" text="Título" prefWidth="200"/>
+                <TableColumn fx:id="colGenero" text="Género" prefWidth="110"/>
+                <TableColumn fx:id="colDuracion" text="Duración" prefWidth="80"/>
+                <TableColumn fx:id="colClasificacion" text="Clasificación" prefWidth="100"/>
+                <TableColumn fx:id="colCartelera" text="En cartelera" prefWidth="90"/>
+            </columns>
+        </TableView>
+        <VBox spacing="10" prefWidth="380" minWidth="340" styleClass="tarjeta">
+            <Label text="Datos de la película" styleClass="subtitulo"/>
+            <GridPane hgap="10" vgap="8">
+                <Label text="Título" styleClass="etiqueta-form" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtTitulo" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS"/>
+                <Label text="Género" styleClass="etiqueta-form" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="cbGenero" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Duración (min)" styleClass="etiqueta-form" GridPane.rowIndex="2"/>
+                <TextField fx:id="txtDuracion" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label text="Clasificación" styleClass="etiqueta-form" GridPane.rowIndex="3"/>
+                <ComboBox fx:id="cbClasificacion" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Label text="Sinopsis" styleClass="etiqueta-form" GridPane.rowIndex="4"/>
+                <TextArea fx:id="txtSinopsis" prefRowCount="3" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <CheckBox fx:id="chkCartelera" text="En cartelera" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            </GridPane>
+            <HBox spacing="10">
+                <Button text="Guardar" styleClass="btn-primario" onAction="#guardar"/>
+                <Button text="Nueva" styleClass="btn-secundario" onAction="#nueva"/>
+            </HBox>
+            <Button text="Poner / retirar de cartelera" styleClass="btn-secundario" onAction="#alternarCartelera"/>
+        </VBox>
+    </HBox>
+</VBox>

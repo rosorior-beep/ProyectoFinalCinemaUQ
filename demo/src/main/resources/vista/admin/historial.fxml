@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.admin.HistorialVistaControlador"
+      spacing="14" styleClass="seccion">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+    <Label text="Historial de cambios" styleClass="titulo"/>
+    <Label wrapText="true" styleClass="descripcion"
+           text="Acciones de configuración realizadas en esta sesión (patrón Command): cambios de asientos, promociones, tarjetas y cartelera. Se pueden deshacer en orden inverso. Las operaciones con dinero (recargas, reembolsos) no se deshacen."/>
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button fx:id="btnDeshacer" text="↶  Deshacer última acción" styleClass="btn-primario" onAction="#deshacer"/>
+        <Label fx:id="lblMensaje" styleClass="texto-aviso" wrapText="true"/>
+    </HBox>
+    <ListView fx:id="listaHistorial" VBox.vgrow="ALWAYS">
+        <placeholder><Label text="Aún no hay acciones en esta sesión."/></placeholder>
+    </ListView>
+</VBox>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.LoginVistaControlador"
+            styleClass="fondo-login">
+    <center>
+        <HBox>
+            <VBox alignment="CENTER_LEFT" spacing="14" styleClass="panel-marca" HBox.hgrow="ALWAYS">
+                <padding><Insets top="60" right="60" bottom="60" left="60"/></padding>
+                <Label text="CinemaUQ" styleClass="logo-grande"/>
+                <Label text="Tu cine, tus asientos, tus puntos." styleClass="lema" wrapText="true"/>
+                <Label maxWidth="380" wrapText="true" styleClass="descripcion-clara"
+                       text="Compra entradas, elige tu asiento, agrega confitería y paga con tu tarjeta virtual. Cada compra suma puntos CinemaUQ."/>
+            </VBox>
+            <VBox alignment="CENTER" minWidth="460">
+                <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+                <VBox spacing="12" maxWidth="380" styleClass="tarjeta-login">
+                    <padding><Insets top="36" right="36" bottom="36" left="36"/></padding>
+                    <Label text="Bienvenido" styleClass="titulo"/>
+                    <Label text="Inicia sesión para continuar" styleClass="descripcion"/>
+                    <Label text="Correo"/>
+                    <TextField fx:id="txtEmail" promptText="correo@ejemplo.com"/>
+                    <Label text="Contraseña"/>
+                    <PasswordField fx:id="txtPassword" promptText="Contraseña"/>
+                    <Button text="Iniciar sesión" styleClass="btn-primario" defaultButton="true"
+                            maxWidth="Infinity" onAction="#iniciarSesion"/>
+                    <Hyperlink text="¿No tienes cuenta? Regístrate" onAction="#irARegistro"/>
+                    <Label styleClass="demo" wrapText="true"
+                           text="Cuentas de demostración&#10;Cliente:  cliente@cinemauq.com  /  cliente123&#10;Administrador:  admin@cinemauq.com  /  admin123"/>
+                </VBox>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

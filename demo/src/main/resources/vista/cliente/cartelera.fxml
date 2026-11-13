@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.cliente.CarteleraVistaControlador"
+      spacing="14" styleClass="seccion">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+    <Label text="Cartelera" styleClass="titulo"/>
+    <Label text="Elige una película para ver sus funciones disponibles." styleClass="descripcion"/>
+    <FlowPane fx:id="panelPeliculas" hgap="16" vgap="16"/>
+    <VBox fx:id="panelDetalle" spacing="12" styleClass="tarjeta">
+        <Label text="Selecciona una película para ver sus horarios." styleClass="descripcion"/>
+    </VBox>
+</VBox>
