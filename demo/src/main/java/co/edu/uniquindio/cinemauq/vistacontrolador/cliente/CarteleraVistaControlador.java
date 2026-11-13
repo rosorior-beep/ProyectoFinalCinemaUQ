@@ -25,7 +25,6 @@ import java.util.TreeMap;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-
 public class CarteleraVistaControlador {
 
     private static final String[] COLORES = {"poster-1", "poster-2", "poster-3", "poster-4", "poster-5", "poster-6"};

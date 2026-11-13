@@ -31,7 +31,6 @@ public interface IRepositorioCine {
 
     Optional<Usuario> buscarUsuarioPorEmail(String email);
 
-
     String siguienteId(String prefijo);
 
     void guardar();

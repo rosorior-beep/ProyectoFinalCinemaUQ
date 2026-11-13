@@ -2,7 +2,6 @@ package co.edu.uniquindio.cinemauq.servicio.estrategias;
 
 import co.edu.uniquindio.cinemauq.modelo.compra.Compra;
 
-
 public class PuntosPorValorPagadoStrategy implements EstrategiaPuntos {
 
     private final double valorPorPunto;

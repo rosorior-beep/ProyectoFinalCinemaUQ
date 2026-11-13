@@ -2,8 +2,8 @@ package co.edu.uniquindio.cinemauq.modelo.compra;
 
 import co.edu.uniquindio.cinemauq.excepciones.DatosInvalidosException;
 import co.edu.uniquindio.cinemauq.modelo.cine.Funcion;
-import co.edu.uniquindio.cinemauq.modelo.compra.estado.EstadoCompra;
-import co.edu.uniquindio.cinemauq.modelo.compra.estado.EstadoPendiente;
+import co.edu.uniquindio.cinemauq.excepciones.CancelacionNoPermitidaException;
+import co.edu.uniquindio.cinemauq.excepciones.OperacionNoPermitidaException;
 import co.edu.uniquindio.cinemauq.modelo.compra.items.Cobrable;
 import co.edu.uniquindio.cinemauq.modelo.compra.items.Entrada;
 import co.edu.uniquindio.cinemauq.modelo.compra.items.ItemConfiteria;
@@ -29,9 +29,9 @@ public class Compra implements Serializable {
     private final int puntosRedimidos;
     private int puntosGanados;
     private List<ConsumoPuntos> consumosPuntos = new ArrayList<>();
-    private EstadoCompra estado = new EstadoPendiente();
+    private EstadoCompra estado = EstadoCompra.PENDIENTE;
 
-
+    // Datos de la cancelación (si ocurre)
     private double montoReembolsado;
     private double porcentajeReembolso;
     private String motivoCancelacion;
@@ -48,33 +48,39 @@ public class Compra implements Serializable {
         this.puntosRedimidos = items.stream().mapToInt(Cobrable::getPuntosUsados).sum();
     }
 
-    // ---------------------- Transiciones (delegan en el State) ----------------------
 
     public void confirmarPago() {
-        estado.confirmarPago(this);
+        if (estado != EstadoCompra.PENDIENTE) {
+            throw new OperacionNoPermitidaException("La compra " + id + " no se puede pagar porque está "
+                    + estado.getEtiqueta().toLowerCase() + ".");
+        }
+        estado = EstadoCompra.PAGADA;
     }
 
+
     public void cancelar(double montoReembolso, double porcentaje, String motivo, LocalDateTime fecha) {
-        estado.cancelar(this, montoReembolso, porcentaje, motivo, fecha);
+        if (estado == EstadoCompra.CANCELADA) {
+            throw new CancelacionNoPermitidaException("La compra " + id
+                    + " ya fue cancelada y reembolsada; no se puede reembolsar dos veces.");
+        }
+        if (estado != EstadoCompra.PAGADA) {
+            throw new OperacionNoPermitidaException("Una compra pendiente no ha sido pagada; no hay nada que reembolsar.");
+        }
+        registrarCancelacion(montoReembolso, porcentaje, motivo, fecha);
+        estado = EstadoCompra.CANCELADA;
     }
 
     public boolean permiteCancelacion() {
-        return estado.permiteCancelacion();
+        return estado == EstadoCompra.PAGADA;
     }
 
-
-    public void cambiarEstado(EstadoCompra nuevo) {
-        this.estado = nuevo;
-    }
-
-    public void registrarCancelacion(double monto, double porcentaje, String motivo, LocalDateTime fecha) {
+    private void registrarCancelacion(double monto, double porcentaje, String motivo, LocalDateTime fecha) {
         this.montoReembolsado = monto;
         this.porcentajeReembolso = porcentaje;
         this.motivoCancelacion = motivo;
         this.fechaCancelacion = fecha;
     }
 
-    // ---------------------- Consultas ----------------------
 
     public List<Entrada> getEntradas() {
         return items.stream().map(Cobrable::getItemBase)
@@ -121,11 +127,12 @@ public class Compra implements Serializable {
     public List<ConsumoPuntos> getConsumosPuntos() { return consumosPuntos; }
     public void setConsumosPuntos(List<ConsumoPuntos> consumos) { this.consumosPuntos = new ArrayList<>(consumos); }
     public EstadoCompra getEstado() { return estado; }
-    public String getNombreEstado() { return estado.getNombre(); }
+    public String getNombreEstado() { return estado.getEtiqueta(); }
     public double getMontoReembolsado() { return montoReembolsado; }
     public double getPorcentajeReembolso() { return porcentajeReembolso; }
     public String getMotivoCancelacion() { return motivoCancelacion; }
     public LocalDateTime getFechaCancelacion() { return fechaCancelacion; }
+
 
 
     public static class Builder {
@@ -159,7 +166,6 @@ public class Compra implements Serializable {
             this.fechaCompra = fecha;
             return this;
         }
-
 
         public Compra build() {
             if (cliente == null) throw new DatosInvalidosException("La compra debe tener un cliente.");

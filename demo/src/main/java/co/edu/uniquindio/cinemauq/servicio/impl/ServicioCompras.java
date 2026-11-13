@@ -60,6 +60,7 @@ public class ServicioCompras implements IServicioCompras {
     }
 
 
+
     @Override
     public List<Pelicula> peliculasEnCartelera() {
         return repositorio.getPeliculas().stream()
@@ -200,7 +201,6 @@ public class ServicioCompras implements IServicioCompras {
         if (!compra.getCliente().getId().equals(cliente.getId())) {
             throw new OperacionNoPermitidaException("La compra " + idCompra + " no te pertenece.");
         }
-
         calculadoraReembolso.setEstrategia(new ReembolsoPorAnticipacionStrategy());
         double porcentaje = compra.permiteCancelacion()
                 ? calculadoraReembolso.calcularPorcentaje(compra, tiempo.ahora()) : 100;

@@ -14,13 +14,18 @@ import co.edu.uniquindio.cinemauq.modelo.confiteria.CategoriaProducto;
 import co.edu.uniquindio.cinemauq.modelo.confiteria.ComponenteConfiteria;
 import co.edu.uniquindio.cinemauq.modelo.promociones.AplicacionPromocion;
 import co.edu.uniquindio.cinemauq.modelo.promociones.Promocion;
-import co.edu.uniquindio.cinemauq.modelo.tarjeta.EstadoTarjeta;
 import co.edu.uniquindio.cinemauq.modelo.tarjeta.SolicitudRecarga;
 import co.edu.uniquindio.cinemauq.modelo.usuarios.Cliente;
 import co.edu.uniquindio.cinemauq.modelo.usuarios.Usuario;
 import co.edu.uniquindio.cinemauq.repositorio.DatosIniciales;
 import co.edu.uniquindio.cinemauq.repositorio.RepositorioArchivo;
 import co.edu.uniquindio.cinemauq.servicio.IServicioAdministracion;
+import co.edu.uniquindio.cinemauq.servicio.comandos.comandos.ComandoCambiarCartelera;
+import co.edu.uniquindio.cinemauq.servicio.comandos.comandos.ComandoCambiarEstadoPromocion;
+import co.edu.uniquindio.cinemauq.servicio.comandos.comandos.ComandoCambiarEstadoTarjeta;
+import co.edu.uniquindio.cinemauq.servicio.comandos.comandos.ComandoCambiarHabilitacionAsiento;
+import co.edu.uniquindio.cinemauq.servicio.comandos.comandos.ComandoCambiarTipoAsiento;
+import co.edu.uniquindio.cinemauq.servicio.comandos.invocador.GestorComandos;
 import co.edu.uniquindio.cinemauq.vista.Navegador;
 
 import java.time.DayOfWeek;
@@ -28,12 +33,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 public class AdminControlador {
 
     private final CinemaFacade fachada;
     private final Navegador navegador;
     private final RepositorioArchivo repositorio;
+
+    private final GestorComandos gestorComandos = new GestorComandos();
 
     public AdminControlador(CinemaFacade fachada, Navegador navegador, RepositorioArchivo repositorio) {
         this.fachada = fachada;
@@ -61,6 +67,17 @@ public class AdminControlador {
         }
     }
 
+    public void alternarCartelera(Pelicula p) {
+        gestorComandos.ejecutar(new ComandoCambiarCartelera(admin(), p));
+    }
+
+
+    public String deshacerUltimaAccion() { return gestorComandos.deshacer(); }
+
+    public boolean puedeDeshacer() { return gestorComandos.puedeDeshacer(); }
+
+    public List<String> historialAcciones() { return gestorComandos.obtenerHistorial(); }
+
 
     public List<Sala> salas() { return admin().listarSalas(); }
 
@@ -71,12 +88,11 @@ public class AdminControlador {
     }
 
     public void cambiarTipoAsiento(Sala sala, String codigo, TipoAsiento tipo) {
-        admin().cambiarTipoAsiento(sala.getId(), codigo, tipo);
+        gestorComandos.ejecutar(new ComandoCambiarTipoAsiento(admin(), sala, codigo, tipo));
     }
 
     public void alternarHabilitado(Sala sala, String codigo) {
-        boolean actual = sala.buscarAsiento(codigo).isHabilitado();
-        admin().cambiarHabilitacionAsiento(sala.getId(), codigo, !actual);
+        gestorComandos.ejecutar(new ComandoCambiarHabilitacionAsiento(admin(), sala, codigo));
     }
 
 
@@ -119,7 +135,9 @@ public class AdminControlador {
         admin().crearPromocion(nombre, aplica, Entradas.decimal(porcentaje, "Porcentaje"), dia, inicio, fin);
     }
 
-    public void alternarPromocion(Promocion p) { admin().cambiarEstadoPromocion(p.getId(), !p.isActiva()); }
+    public void alternarPromocion(Promocion p) {
+        gestorComandos.ejecutar(new ComandoCambiarEstadoPromocion(admin(), p));
+    }
 
 
     public List<Cliente> clientes() { return admin().listarClientes(); }
@@ -129,7 +147,7 @@ public class AdminControlador {
     public void recargar(Cliente c, String monto) { admin().recargarTarjeta(c.getId(), Entradas.dinero(monto, "Monto")); }
 
     public void alternarTarjeta(Cliente c) {
-        admin().cambiarEstadoTarjeta(c.getId(), c.getTarjeta().estaActiva() ? EstadoTarjeta.BLOQUEADA : EstadoTarjeta.ACTIVA);
+        gestorComandos.ejecutar(new ComandoCambiarEstadoTarjeta(admin(), c));
     }
 
     public List<SolicitudRecarga> solicitudes() { return admin().listarSolicitudesRecarga(); }

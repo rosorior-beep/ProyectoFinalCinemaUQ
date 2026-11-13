@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ServicioPuntos implements IServicioPuntos {
 
-    private final CalculadoraPuntos calculadora; // contexto del patrón Strategy
+    private final CalculadoraPuntos calculadora;
     private final ProveedorTiempo tiempo;
 
     public ServicioPuntos(EstrategiaPuntos estrategia, ProveedorTiempo tiempo) {
