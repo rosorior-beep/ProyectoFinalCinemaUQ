@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.admin.FuncionesVistaControlador"
+      spacing="14" styleClass="seccion">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+    <Label text="Funciones" styleClass="titulo"/>
+    <Label wrapText="true" styleClass="descripcion"
+           text="Las funciones no pueden cruzarse en la misma sala (se reservan 20 min de limpieza). Si cancelas una función se devuelve el 100 % a todos sus compradores."/>
+    <HBox spacing="16">
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <CheckBox fx:id="chkProximas" text="Solo próximas" selected="true" onAction="#cargar"/>
+            <TableView fx:id="tablaFunciones" prefHeight="330">
+                <placeholder><Label text="No hay funciones."/></placeholder>
+                <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                <columns>
+                    <TableColumn fx:id="colId" text="Id" prefWidth="70"/>
+                    <TableColumn fx:id="colFecha" text="Fecha y hora" prefWidth="130"/>
+                    <TableColumn fx:id="colPelicula" text="Película" prefWidth="160"/>
+                    <TableColumn fx:id="colSala" text="Sala" prefWidth="110"/>
+                    <TableColumn fx:id="colPrecio" text="Precio base" prefWidth="90"/>
+                    <TableColumn fx:id="colVendidos" text="Vendidos" prefWidth="80"/>
+                    <TableColumn fx:id="colOcupacion" text="Ocupación" prefWidth="80"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="90"/>
+                </columns>
+            </TableView>
+            <VBox fx:id="panelOcupacion" spacing="8"/>
+        </VBox>
+        <VBox spacing="14" prefWidth="360" minWidth="340">
+            <VBox spacing="10" styleClass="tarjeta">
+                <Label text="Programar función" styleClass="subtitulo"/>
+                <GridPane hgap="10" vgap="8">
+                    <Label text="Película" styleClass="etiqueta-form" GridPane.rowIndex="0"/>
+                    <ComboBox fx:id="cbPelicula" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS"/>
+                    <Label text="Sala" styleClass="etiqueta-form" GridPane.rowIndex="1"/>
+                    <ComboBox fx:id="cbSala" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    <Label text="Fecha" styleClass="etiqueta-form" GridPane.rowIndex="2"/>
+                    <DatePicker fx:id="dpFecha" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    <Label text="Hora (HH:mm)" styleClass="etiqueta-form" GridPane.rowIndex="3"/>
+                    <TextField fx:id="txtHora" text="19:00" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                    <Label text="Precio base $" styleClass="etiqueta-form" GridPane.rowIndex="4"/>
+                    <TextField fx:id="txtPrecio" text="14000" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                </GridPane>
+                <Button text="Programar" styleClass="btn-primario" onAction="#programar"/>
+            </VBox>
+            <VBox spacing="10" styleClass="tarjeta">
+                <Label text="Acciones sobre la función seleccionada" styleClass="subtitulo"/>
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Button text="Replicar los siguientes" styleClass="btn-secundario" onAction="#replicar"/>
+                    <Spinner fx:id="spDias" prefWidth="80"/>
+                    <Label text="días" styleClass="descripcion"/>
+                </HBox>
+                <Button text="Cancelar función y reembolsar" styleClass="btn-peligro" onAction="#cancelarFuncion"/>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

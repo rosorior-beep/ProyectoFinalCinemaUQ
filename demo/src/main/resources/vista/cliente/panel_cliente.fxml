@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.cinemauq.vistacontrolador.cliente.PanelClienteVistaControlador"
+            styleClass="fondo-app">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="encabezado">
+            <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+            <Label fx:id="lblSaludo" styleClass="saludo"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTarjeta" styleClass="chip"/>
+            <Label fx:id="lblSaldo" styleClass="chip"/>
+            <Label fx:id="lblPuntos" styleClass="chip, chip-dorado"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox spacing="4" prefWidth="220" styleClass="sidebar">
+            <padding><Insets top="20" right="12" bottom="20" left="12"/></padding>
+            <VBox spacing="2">
+                <padding><Insets bottom="18" left="8" right="8"/></padding>
+                <Label text="CinemaUQ" styleClass="logo"/>
+                <Label text="Cliente" styleClass="rol"/>
+            </VBox>
+            <Button fx:id="btnCartelera" text="🎬  Cartelera" styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT" onAction="#mostrarCartelera"/>
+            <Button fx:id="btnCompras" text="🧾  Mis compras" styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT" onAction="#mostrarCompras"/>
+            <Button fx:id="btnTarjeta" text="💳  Mi tarjeta" styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT" onAction="#mostrarTarjeta"/>
+            <Button fx:id="btnPuntos" text="⭐  Mis puntos" styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT" onAction="#mostrarPuntos"/>
+            <Button fx:id="btnNotificaciones" text="🔔  Notificaciones" styleClass="nav-btn" maxWidth="Infinity" alignment="CENTER_LEFT" onAction="#mostrarNotificaciones"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="⏻  Cerrar sesión" styleClass="nav-btn, nav-salir" maxWidth="Infinity" alignment="CENTER_LEFT" onAction="#cerrarSesion"/>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane fx:id="contenido" fitToWidth="true" fitToHeight="true" styleClass="contenido-scroll"/>
+    </center>
+</BorderPane>
