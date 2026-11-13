@@ -5,6 +5,7 @@ import co.edu.uniquindio.cinemauq.modelo.usuarios.Rol;
 import co.edu.uniquindio.cinemauq.modelo.usuarios.Usuario;
 import co.edu.uniquindio.cinemauq.vista.Navegador;
 
+
 public class LoginControlador {
 
     private final CinemaFacade fachada;
@@ -39,4 +40,3 @@ public class LoginControlador {
         navegador.mostrarLogin();
     }
 }
-

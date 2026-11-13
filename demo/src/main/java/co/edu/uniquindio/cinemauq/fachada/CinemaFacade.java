@@ -19,7 +19,8 @@ import co.edu.uniquindio.cinemauq.servicio.IServicioPagos;
 import co.edu.uniquindio.cinemauq.servicio.IServicioPuntos;
 import co.edu.uniquindio.cinemauq.servicio.IServicioRecargas;
 import co.edu.uniquindio.cinemauq.servicio.IServicioReportes;
-import co.edu.uniquindio.cinemauq.servicio.estrategias.PuntosPorValorPagado;
+import co.edu.uniquindio.cinemauq.servicio.dto.PedidoCompra;
+import co.edu.uniquindio.cinemauq.servicio.estrategias.PuntosPorValorPagadoStrategy;
 import co.edu.uniquindio.cinemauq.servicio.eventos.GestorEventos;
 import co.edu.uniquindio.cinemauq.servicio.eventos.NotificadorAdministradores;
 import co.edu.uniquindio.cinemauq.servicio.eventos.NotificadorUsuario;
@@ -44,6 +45,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 
 public class CinemaFacade {
 
@@ -72,7 +74,7 @@ public class CinemaFacade {
 
         IServicioPagos pagos = new ServicioPagos(tiempo);
         this.autenticacion = new ServicioAutenticacion(repositorio);
-        this.puntos = new ServicioPuntos(new PuntosPorValorPagado(ConfiguracionCine.getInstance().getValorPorPunto()), tiempo);
+        this.puntos = new ServicioPuntos(new PuntosPorValorPagadoStrategy(ConfiguracionCine.getInstance().getValorPorPunto()), tiempo);
         this.compras = new ServicioCompras(repositorio, pagos, puntos, eventos, tiempo);
         this.recargas = new ServicioRecargas(repositorio, pagos, eventos, tiempo);
         this.reportes = new ServicioReportes(repositorio, tiempo);
@@ -80,6 +82,7 @@ public class CinemaFacade {
         this.administracion = new ProxyServicioAdministracion(() -> usuarioActual,
                 () -> new ServicioAdministracion(repositorio, compras, recargas, eventos, tiempo));
     }
+
 
 
     public Usuario iniciarSesion(String email, String password) {
@@ -123,6 +126,7 @@ public class CinemaFacade {
     }
 
 
+
     public List<Pelicula> peliculasEnCartelera() {
         return compras.peliculasEnCartelera();
     }
@@ -137,13 +141,13 @@ public class CinemaFacade {
 
     public Compra cotizar(Funcion funcion, List<String> asientos, Map<String, Integer> productos,
                           Set<String> asientosConPuntos, Set<String> productosConPuntos) {
-        return compras.cotizar(new ComandoCambiarCartelera(getClienteActual(), funcion, asientos, productos,
+        return compras.cotizar(new PedidoCompra(getClienteActual(), funcion, asientos, productos,
                 asientosConPuntos, productosConPuntos));
     }
 
     public Compra comprar(Funcion funcion, List<String> asientos, Map<String, Integer> productos,
                           Set<String> asientosConPuntos, Set<String> productosConPuntos) {
-        return compras.comprar(new ComandoCambiarCartelera(getClienteActual(), funcion, asientos, productos,
+        return compras.comprar(new PedidoCompra(getClienteActual(), funcion, asientos, productos,
                 asientosConPuntos, productosConPuntos));
     }
 
@@ -175,7 +179,6 @@ public class CinemaFacade {
         return getClienteActual().getCuentaPuntos().getPuntosPorVencer(ahora().toLocalDate(), dias);
     }
 
-
     public int puntosAGanar(Compra compra) {
         return puntos.calcularPuntosGanados(compra);
     }
@@ -183,6 +186,7 @@ public class CinemaFacade {
     public String descripcionReglaPuntos() {
         return puntos.getDescripcionRegla();
     }
+
 
 
     public IServicioAdministracion administracion() {
@@ -198,7 +202,6 @@ public class CinemaFacade {
         verificarAdministrador();
         return reportes.exportar(reporte, extension, destino);
     }
-
 
     public IServicioReportes estadisticas() {
         verificarAdministrador();

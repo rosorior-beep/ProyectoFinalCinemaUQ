@@ -31,7 +31,6 @@ public final class RepositorioArchivo extends RepositorioMemoria {
         return Files.exists(archivo);
     }
 
-
     public boolean cargar() {
         if (!existeArchivo()) return false;
         try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(archivo))) {

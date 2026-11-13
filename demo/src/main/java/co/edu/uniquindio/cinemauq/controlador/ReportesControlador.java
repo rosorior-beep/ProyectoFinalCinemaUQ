@@ -19,9 +19,7 @@ public class ReportesControlador {
         this.fachada = fachada;
     }
 
-    public LocalDate hoy() {
-        return fachada.ahora().toLocalDate();
-    }
+    public LocalDate hoy() { return fachada.ahora().toLocalDate(); }
 
     public Reporte generar(TipoReporte tipo, LocalDate desde, LocalDate hasta) {
         if (tipo == null) throw new DatosInvalidosException("Selecciona el tipo de reporte.");
@@ -33,11 +31,7 @@ public class ReportesControlador {
         return fachada.exportarReporte(reporte, extension, destino);
     }
 
-    public Indicadores indicadores(LocalDate desde, LocalDate hasta) {
-        return fachada.indicadores(desde, hasta);
-    }
+    public Indicadores indicadores(LocalDate desde, LocalDate hasta) { return fachada.indicadores(desde, hasta); }
 
-    public IServicioReportes estadisticas() {
-        return fachada.estadisticas();
-    }
+    public IServicioReportes estadisticas() { return fachada.estadisticas(); }
 }

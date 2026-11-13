@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class DatosCine implements Serializable {
     final List<Usuario> usuarios = new ArrayList<>();
     final List<Pelicula> peliculas = new ArrayList<>();

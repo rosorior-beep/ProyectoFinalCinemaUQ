@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
 final class Entradas {
 
     private Entradas() {
@@ -46,6 +45,7 @@ final class Entradas {
             throw new DatosInvalidosException("La hora debe tener el formato HH:mm (ej. 19:30).");
         }
     }
+
 
     static Set<String> codigos(String texto) {
         if (texto == null || texto.isBlank()) return Set.of();

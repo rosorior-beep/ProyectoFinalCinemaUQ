@@ -26,29 +26,17 @@ public class ClienteControlador {
         this.navegador = navegador;
     }
 
-    public Cliente cliente() {
-        return fachada.getClienteActual();
-    }
+    public Cliente cliente() { return fachada.getClienteActual(); }
 
-    public LocalDateTime ahora() {
-        return fachada.ahora();
-    }
+    public LocalDateTime ahora() { return fachada.ahora(); }
 
-    public List<Pelicula> cartelera() {
-        return fachada.peliculasEnCartelera();
-    }
+    public List<Pelicula> cartelera() { return fachada.peliculasEnCartelera(); }
 
-    public List<Funcion> funciones(Pelicula p) {
-        return fachada.funcionesDisponibles(p);
-    }
+    public List<Funcion> funciones(Pelicula p) { return fachada.funcionesDisponibles(p); }
 
-    public List<ComponenteConfiteria> confiteria() {
-        return fachada.confiteriaDisponible();
-    }
+    public List<ComponenteConfiteria> confiteria() { return fachada.confiteriaDisponible(); }
 
-    public int puntosPorEntrada() {
-        return ConfiguracionCine.getInstance().getPuntosPorEntrada();
-    }
+    public int puntosPorEntrada() { return ConfiguracionCine.getInstance().getPuntosPorEntrada(); }
 
     public Compra cotizar(Funcion f, List<String> asientos, Map<String, Integer> productos,
                           Set<String> asientosPuntos, Set<String> productosPuntos) {
@@ -60,45 +48,27 @@ public class ClienteControlador {
         return fachada.comprar(f, asientos, productos, asientosPuntos, productosPuntos);
     }
 
-    public List<Compra> misCompras() {
-        return fachada.misCompras();
-    }
+    public List<Compra> misCompras() { return fachada.misCompras(); }
 
-    public double porcentajeReembolso(Compra c) {
-        return fachada.porcentajeReembolso(c);
-    }
+    public double porcentajeReembolso(Compra c) { return fachada.porcentajeReembolso(c); }
 
-    public Compra cancelar(Compra c) {
-        return fachada.cancelarCompra(c.getId());
-    }
+    public Compra cancelar(Compra c) { return fachada.cancelarCompra(c.getId()); }
 
     public SolicitudRecarga solicitarRecarga(String monto) {
         return fachada.solicitarRecarga(Entradas.dinero(monto, "Monto"));
     }
 
-    public List<SolicitudRecarga> misSolicitudes() {
-        return fachada.misSolicitudesRecarga();
-    }
+    public List<SolicitudRecarga> misSolicitudes() { return fachada.misSolicitudesRecarga(); }
 
-    public int puntosDisponibles() {
-        return fachada.puntosDisponibles();
-    }
+    public int puntosDisponibles() { return fachada.puntosDisponibles(); }
 
-    public int puntosPorVencer() {
-        return fachada.puntosPorVencer(30);
-    }
+    public int puntosPorVencer() { return fachada.puntosPorVencer(30); }
 
-    public String reglaPuntos() {
-        return fachada.descripcionReglaPuntos();
-    }
+    public String reglaPuntos() { return fachada.descripcionReglaPuntos(); }
 
-    public int puntosAGanar(Compra c) {
-        return fachada.puntosAGanar(c);
-    }
+    public int puntosAGanar(Compra c) { return fachada.puntosAGanar(c); }
 
-    public void marcarNotificacionesLeidas() {
-        fachada.marcarNotificacionesLeidas();
-    }
+    public void marcarNotificacionesLeidas() { fachada.marcarNotificacionesLeidas(); }
 
     public void cerrarSesion() {
         fachada.cerrarSesion();

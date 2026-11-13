@@ -18,7 +18,7 @@
     <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
     <Label text="Promociones" styleClass="titulo"/>
     <Label wrapText="true" styleClass="descripcion"
-           text="Descuentos por porcentaje según el día de la FUNCIÓN (se aplican con el patrón Decorator). No son acumulables: se aplica la de mayor porcentaje."/>
+           text="Descuentos por porcentaje según el día de la FUNCIÓN. No son acumulables: se aplica la de mayor porcentaje."/>
     <HBox spacing="16" VBox.vgrow="ALWAYS">
         <TableView fx:id="tablaPromociones" HBox.hgrow="ALWAYS">
             <placeholder><Label text="No hay promociones."/></placeholder>

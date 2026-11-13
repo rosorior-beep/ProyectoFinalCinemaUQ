@@ -24,7 +24,7 @@
     <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
     <Label text="Salas y asientos" styleClass="titulo"/>
     <Label wrapText="true" styleClass="descripcion"
-           text="Crea salas y edita sus asientos: selecciona una herramienta y haz clic sobre los asientos del mapa (Factory Method)."/>
+           text="Crea salas y edita sus asientos: selecciona una herramienta y haz clic sobre los asientos del mapa."/>
     <HBox spacing="16">
         <TableView fx:id="tablaSalas" prefHeight="220" HBox.hgrow="ALWAYS">
             <placeholder><Label text="No hay salas."/></placeholder>
