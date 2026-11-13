@@ -13,7 +13,6 @@ public final class Vistas {
     private Vistas() {
     }
 
-
     public static <C> Parent cargar(String ruta, Consumer<C> configurar) {
         URL url = Vistas.class.getResource(ruta);
         if (url == null) {
