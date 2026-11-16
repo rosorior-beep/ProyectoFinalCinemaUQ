@@ -34,6 +34,7 @@ public interface IRepositorioCine {
     String siguienteId(String prefijo);
 
     void guardar();
-
+    default void setGuardadoAutomatico(boolean activo) {
+    }
     void limpiar();
 }

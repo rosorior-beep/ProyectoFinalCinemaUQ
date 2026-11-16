@@ -75,8 +75,13 @@ public final class DatosIniciales {
 
     public static void cargar(IRepositorioCine repo, LocalDateTime ahora) {
         repo.limpiar();
-        new DatosIniciales(repo, ahora).generar();
-        repo.guardar();
+        repo.setGuardadoAutomatico(false); // no guardar en disco tras cada compra simulada
+        try {
+            new DatosIniciales(repo, ahora).generar();
+        } finally {
+            repo.setGuardadoAutomatico(true);
+        }
+        repo.guardar(); // se guarda una sola vez al final
     }
 
     private void generar() {

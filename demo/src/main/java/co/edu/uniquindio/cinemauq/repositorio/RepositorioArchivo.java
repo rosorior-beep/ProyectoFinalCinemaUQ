@@ -15,6 +15,7 @@ public final class RepositorioArchivo extends RepositorioMemoria {
     private static RepositorioArchivo instancia;
 
     private final Path archivo;
+    private boolean guardadoAutomatico = true;
 
     private RepositorioArchivo(Path archivo) {
         this.archivo = archivo;
@@ -44,7 +45,13 @@ public final class RepositorioArchivo extends RepositorioMemoria {
     }
 
     @Override
+    public void setGuardadoAutomatico(boolean activo) {
+        this.guardadoAutomatico = activo;
+    }
+
+    @Override
     public void guardar() {
+        if (!guardadoAutomatico) return;
         try {
             Files.createDirectories(archivo.getParent());
             try (ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(archivo))) {
